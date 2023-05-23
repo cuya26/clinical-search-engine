@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  elasticsearch:
+    image: elasticsearch:7.9.2
+    container_name: elasticsearch_clinical
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - "9202:9200"
+    environment:
+      - discovery.type=single-node
+
+    deploy:
+        resources:
+            limits:
+              memory: 5G
+volumes:
+  elasticsearch-data:
+    driver: local
